@@ -1,0 +1,28 @@
+ARG ALPINE_VERSION=3.18
+FROM alpine:$ALPINE_VERSION
+
+# Copy default configuration
+COPY files .
+
+# Install BIND
+RUN apk update \
+ && apk add \
+        bind \
+        bind-tools \
+        bind-dnssec-tools \
+ && chmod +x docker-entrypoint.sh \
+ && mv docker-entrypoint.sh /usr/local/bin/ \
+ ; named -v
+
+VOLUME /etc/bind \
+       /var/lib/bind \
+       /var/cache/bind \
+       /var/log
+
+EXPOSE 53/udp
+EXPOSE 53/tcp
+EXPOSE 953/tcp
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["named", "-c", "/etc/bind/named.conf", "-g", "-u", "named"]

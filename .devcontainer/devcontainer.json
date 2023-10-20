@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "name": "bind9",
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "uname -a",
+    "remoteUser": "vscode",
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    // "remoteUser": "root"
+    "workspaceFolder": "/home/vscode/bind9",
+    "workspaceMount": "source=${localWorkspaceFolder}/,target=/home/vscode/bind9,type=bind,consistency=cached",
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Useful for documentation
+                "davidanson.vscode-markdownlint",
+                // Standardize editor configuration
+                "EditorConfig.EditorConfig",
+                // Bash support
+                "foxundermoon.shell-format",
+                // CI editor
+                "github.vscode-github-actions",
+                // Support interacting with running containers
+                "ms-azuretools.vscode-docker",
+                // " " " " devcontainers
+                "ms-vscode-remote.remote-containers",
+                // YAML support
+                "redhat.vscode-yaml"
+            ]
+        }
+    },
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    "features": {
+        "ghcr.io/joshspicer/features/oci-utils:1": {}
+    }
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": []
+}
