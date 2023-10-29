@@ -23,6 +23,7 @@
                 "foxundermoon.shell-format",
                 // CI editor
                 "github.vscode-github-actions",
+                "gitlab.gitlab-workflow",
                 // Support interacting with running containers
                 "ms-azuretools.vscode-docker",
                 // " " " " devcontainers
