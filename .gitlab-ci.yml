@@ -1,0 +1,17 @@
+variables:
+  PLATFORMS: linux/amd64
+  # BUG: Waiting for https://github.com/docker/roadmap/issues/371
+  #PLATFORMS: linux/amd64,linux/arm64
+
+build-image:
+  stage: build
+  parallel:
+    matrix:
+      - DISTRIBUTION:
+        - alpine
+        #- debian
+        #- ubuntu
+  script:
+    - docker buildx create --platform=$PLATFORMS --bootstrap --use
+    - docker buildx inspect
+    - docker buildx build --load --platform=$PLATFORMS --tag bind9:$DISTRIBUTION -f docker/Dockerfile.$DISTRIBUTION docker/
