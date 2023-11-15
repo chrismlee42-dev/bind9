@@ -1,4 +1,4 @@
-name: Docker buildx CI
+name: Container image CI
 
 env:
   # github.repository as <account>/<repo>
@@ -14,9 +14,13 @@ on:
   pull_request:
     branches:
       - $default-branch
+    paths:
+      - docker/*
   push:
     branches:
       - $default-branch
+    paths:
+      - docker/*
   workflow_dispatch:
 
 concurrency:
