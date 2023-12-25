@@ -1,10 +1,13 @@
 #!/bin/sh
 
-CMD=$1
+CMD=$@
 
-if [ ! -f /etc/bind/named.conf ]; then
+if [ ! -d /var/named ]; then
     mkdir -p /var/named
     chown -R named /var/named
+    chmod 750 /var/named
 fi
 
+ls -al /etc/bind/
+echo "Running $CMD..."
 $CMD

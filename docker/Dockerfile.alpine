@@ -11,6 +11,7 @@ RUN apk update \
         bind \
         bind-tools \
         bind-dnssec-tools \
+ && chown -R named:named /etc/bind \
  && chmod +x docker-entrypoint.sh \
  && mv docker-entrypoint.sh /usr/local/bin/ \
  ; named -v
