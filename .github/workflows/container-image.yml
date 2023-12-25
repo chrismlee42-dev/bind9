@@ -21,6 +21,8 @@ on:
       - $default-branch
     paths:
       - docker/*
+    tags:
+      - "chrismlee42/bind8:**"
   workflow_dispatch:
 
 concurrency:
