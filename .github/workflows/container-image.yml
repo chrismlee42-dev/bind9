@@ -22,7 +22,7 @@ on:
     paths:
       - docker/*
     tags:
-      - "chrismlee42/bind8:**"
+      - "v9.*.*"
   workflow_dispatch:
 
 concurrency:
