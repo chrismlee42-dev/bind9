@@ -3,7 +3,7 @@
 ;       (e.g. reference this file in the "cache  .  <file>"
 ;       configuration file of BIND domain name servers).
 ;
-;       This file is made available by InterNIC 
+;       This file is made available by InterNIC
 ;       under anonymous FTP as
 ;           file                /domain/named.cache
 ;           on server           FTP.INTERNIC.NET
