@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
     "name": "bind9",
     // Use 'postCreateCommand' to run commands after the container is created.
     // "postCreateCommand": "uname -a",
@@ -26,6 +26,8 @@
                 "gitlab.gitlab-workflow",
                 // Support interacting with running containers
                 "ms-azuretools.vscode-docker",
+                // Kubernetes support
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
                 // " " " " devcontainers
                 "ms-vscode-remote.remote-containers",
                 // YAML support
@@ -35,8 +37,22 @@
     },
     // Features to add to the dev container. More info: https://containers.dev/features.
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    }
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+    },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": []
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.cache/helm,target=/home/vscode/.cache/helm,type=bind,consistency=cached",
+        // "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/helm,target=/home/vscode/.config/helm,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ],
+    "runArgs": [
+        // devcontainer.json does not (yet) support specifying container networks
+        // see: https://github.com/microsoft/vscode-remote-release/issues/4272
+        "--network=host"
+    ]
 }
